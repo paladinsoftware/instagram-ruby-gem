@@ -44,9 +44,9 @@ module Instagram
         
         case method
         when :get, :delete
-          request.url(URI.encode(path), options)
+          request.url(URI::Parser.new.escape(path), options)
         when :post, :put
-          request.path = URI.encode(path)
+          request.path = URI::Parser.new.escape(path)
           request.body = options unless options.empty?
         end
         if signature && client_ips != nil
