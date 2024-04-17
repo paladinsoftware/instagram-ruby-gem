@@ -15,6 +15,10 @@ module Instagram
       @response_hash.data ? @response_hash.data.send(m, *args, &block) : @response_hash.send(m, *args, &block)
     end
 
+    def blank?
+      @response_hash.blank?
+    end
+
     def to_hash
       @response_hash
     end
