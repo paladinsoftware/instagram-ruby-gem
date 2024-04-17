@@ -30,7 +30,7 @@ module Instagram
     def request(method, path, options, signature=false, raw=false, unformatted=false, no_response_wrapper=false, signed=sign_requests)
       response = connection(raw).send(method) do |request|
         path = formatted_path(path) unless unformatted
-        
+
         if signed == true
           if client_id != nil
             sig_options = options.merge({:client_id => client_id})
@@ -41,7 +41,7 @@ module Instagram
           sig = generate_sig("/"+path, sig_options, client_secret)
           options[:sig] = sig
         end
-        
+
         case method
         when :get, :delete
           request.url(URI::Parser.new.escape(path), options)
@@ -55,7 +55,7 @@ module Instagram
       end
       return response if raw
       return response.body if no_response_wrapper
-      return Response.create( response.body || {}, {:limit => response.headers['x-ratelimit-limit'].to_i,
+      return Response.new( response.body || {}, {:limit => response.headers['x-ratelimit-limit'].to_i,
                                               :remaining => response.headers['x-ratelimit-remaining'].to_i} )
     end
 

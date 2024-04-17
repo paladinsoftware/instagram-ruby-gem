@@ -7,7 +7,7 @@ describe Instagram::Client do
         @client = Instagram::Client.new(:format => format, :client_id => 'CID', :client_secret => 'CS', :access_token => 'AT')
       end
 
-      
+
       describe ".geography_recent_media" do
 
         context "with geography ID passed" do
@@ -27,7 +27,7 @@ describe Instagram::Client do
 
           it "should return a list of recent media items within the specifed geography" do
             recent_media = @client.geography_recent_media(12345)
-            recent_media.should be_a Array
+            recent_media.should be_a Instagram::Response
             recent_media.first.user.username.should == "amandavan"
           end
         end

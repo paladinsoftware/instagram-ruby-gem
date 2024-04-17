@@ -45,7 +45,7 @@ describe Instagram::Client do
 
         it "should return a list of media taken at a given location" do
           media = @client.tag_recent_media('cat')
-          media.should be_a Array
+          media.should be_a Instagram::Response
           media.first.user.username.should == "amandavan"
         end
 
@@ -70,7 +70,7 @@ describe Instagram::Client do
 
         it "should return an array of user search results" do
           tags = @client.tag_search('cat')
-          tags.should be_a Array
+          tags.should be_a Instagram::Response
           tags.first.name.should == "cats"
         end
       end

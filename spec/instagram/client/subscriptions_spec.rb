@@ -25,7 +25,7 @@ describe Instagram::Client do
 
         it "should return an array of subscriptions" do
           subscriptions = @client.subscriptions
-          subscriptions.should be_a Array
+          subscriptions.should be_a Instagram::Response
           subscriptions.first.object.should == "user"
         end
       end
