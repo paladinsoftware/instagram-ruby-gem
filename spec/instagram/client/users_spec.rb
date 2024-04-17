@@ -182,14 +182,18 @@ describe Instagram::Client do
             subject{ user_media_feed_response.pagination }
 
             it{ should be_an_instance_of(Hashie::Mash) }
-            its(:next_max_id){ should == '22063131' }
+            it do
+              subject.next_max_id.should == '22063131'
+            end
           end
 
           context '.meta' do
             subject{ user_media_feed_response.meta }
 
             it{ should be_an_instance_of(Hashie::Mash) }
-            its(:code){ should == 200 }
+            it do
+              subject.code.should == 200
+            end
           end
         end
       end

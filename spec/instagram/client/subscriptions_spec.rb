@@ -77,7 +77,7 @@ describe Instagram::Client do
           let(:request_signature) { OpenSSL::HMAC.hexdigest('sha1', @client.client_secret, body) }
           let(:headers) { {"X-Hub-Signature" => request_signature} }
 
-          it { expect(subject).to be_true }
+          it { expect(subject).to eq(true) }
         end
 
         context "when calculated signature does not match request signature" do
@@ -86,7 +86,7 @@ describe Instagram::Client do
           let(:request_signature) { "going to fail" }
           let(:headers) { {"X-Hub-Signature" => request_signature} }
 
-          it { expect(subject).to be_false }
+          it { expect(subject).to eq(false) }
         end
       end
 
