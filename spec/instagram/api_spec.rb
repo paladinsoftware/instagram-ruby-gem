@@ -151,7 +151,7 @@ describe Instagram::API do
         params = { :redirect_uri => redirect_uri }
         client = Instagram::Client.new(params)
         url = client.authorize_url()
-        url.should =~ /redirect_uri=#{URI.escape(redirect_uri, Regexp.union('/',':'))}/
+        url.should =~ /redirect_uri=#{URI::Parser.new.escape(redirect_uri, Regexp.union('/',':'))}/
       end
 
       it "should override configuration redirect_uri if passed as option" do
@@ -161,7 +161,7 @@ describe Instagram::API do
         redirect_uri_option = 'http://localhost:4567/oauth/callback_option'
         options = { :redirect_uri => redirect_uri_option }
         url = client.authorize_url(options)
-        url.should =~ /redirect_uri=#{URI.escape(redirect_uri_option, Regexp.union('/',':'))}/
+        url.should =~ /redirect_uri=#{URI::Parser.new.escape(redirect_uri_option, Regexp.union('/',':'))}/
       end
     end
   end
@@ -266,7 +266,8 @@ describe Instagram::API do
         end
 
         it "should redact API keys" do
-          ENV.stub(:[]).with('http_proxy').and_return(nil)
+          ENV.stub(:[]).with('https_proxy').and_return(nil)
+          ENV.stub(:[]).with('HTTPS_PROXY').and_return(nil)
           ENV.stub(:[]).with('INSTAGRAM_GEM_REDACT').and_return('true')
 
           output = capture_output do

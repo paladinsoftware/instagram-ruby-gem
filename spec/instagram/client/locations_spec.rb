@@ -45,7 +45,7 @@ describe Instagram::Client do
 
         it "should return a list of media taken at a given location" do
           media = @client.location_recent_media(514276)
-          media.should be_a Array
+          media.should be_a Instagram::Response
           media.first.user.username.should == "josh"
         end
       end
@@ -69,7 +69,7 @@ describe Instagram::Client do
 
         it "should return an array of user search results" do
           locations = @client.location_search("37.7808851", "-122.3948632")
-          locations.should be_a Array
+          locations.should be_a Instagram::Response
           locations.first.name.should == "Instagram"
         end
       end
@@ -93,7 +93,7 @@ describe Instagram::Client do
 
         it "should return an array of user search results" do
           locations = @client.location_search("37.7808851", "-122.3948632", "5000")
-          locations.should be_a Array
+          locations.should be_a Instagram::Response
           locations.first.name.should == "Instagram"
         end
       end
@@ -117,7 +117,7 @@ describe Instagram::Client do
 
         it "should return an array of user search results" do
           locations = @client.location_search("3fd66200f964a520c5f11ee3")
-          locations.should be_a Array
+          locations.should be_a Instagram::Response
           locations.first.name.should == "Schiller's Liquor Bar"
         end
       end

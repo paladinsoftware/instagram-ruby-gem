@@ -25,7 +25,7 @@ describe Instagram::Client do
 
         it "should return an array of user search results" do
           comments = @client.media_likes(777)
-          comments.should be_a Array
+          comments.should be_a Instagram::Response
           comments.first.username.should == "chris"
         end
       end

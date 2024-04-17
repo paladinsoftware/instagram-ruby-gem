@@ -66,7 +66,7 @@ describe Instagram::Client do
 
         it "should return popular media items" do
           media_popular = @client.media_popular
-          media_popular.should be_a Array
+          media_popular.should be_a Instagram::Response
           media_popular.first.user.username == "babycamera"
         end
       end
@@ -90,7 +90,7 @@ describe Instagram::Client do
 
         it "should return an array of user search results" do
           media_search = @client.media_search("37.7808851", "-122.3948632")
-          media_search.should be_a Array
+          media_search.should be_a Instagram::Response
           media_search.first.user.username.should == "mikeyk"
         end
       end

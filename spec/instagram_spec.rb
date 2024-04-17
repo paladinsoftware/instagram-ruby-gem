@@ -18,7 +18,7 @@ describe Instagram do
      end
 
      it "should return the same results as a client" do
-       Instagram.user_media_feed().should == Instagram::Client.new.user_media_feed()
+       Instagram.user_media_feed().to_hash.should == Instagram::Client.new.user_media_feed().to_hash
      end
 
    end
